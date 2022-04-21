@@ -57,11 +57,11 @@ pip3 install behave
 Run the following command in the directory where your project has been saved to execute your build.
 - Android
 ```bash
-python3 ios.py
+behave --tags @androidApp
 ```
 - iOS
 ```bash
-python3 android.py
+behave --tags @iosApp
 ```
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
