@@ -5,7 +5,6 @@ sys.path.append(os.path.abspath(os.path.join(path, os.pardir)))
 from time import time
 from behave import given
 from appium import webdriver
-import config as conf
 import appConfig as appConf
 from appium.webdriver.common.mobileby import MobileBy
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,7 +23,7 @@ def startAndroidAppAutomationTest(self):
 
     driver = webdriver.Remote(
         command_executor="https://"+username+":"+accesskey+"@beta-hub.lambdatest.com/wd/hub",
-        desired_capabilities=appConf.app_ios_desired_caps
+        desired_capabilities=appConf.app_android_desired_caps
         )
     try:
         colorElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/color")))
