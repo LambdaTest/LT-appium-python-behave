@@ -2,7 +2,6 @@ import sys
 import os
 path = os.getcwd()
 sys.path.append(os.path.abspath(os.path.join(path, os.pardir)))
-import config as conf
 import appConfig as appConf
 from behave import given
 from appium import webdriver
@@ -27,37 +26,40 @@ def startIOSAppAutomationTest(self):
         desired_capabilities=appConf.app_ios_desired_caps
     )
     try:
-        colorElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/color")))
+        colorElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"color")))
         colorElement.click()
 
-        textElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/Text")))
+        textElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Text")))
         textElement.click()
 
-        toastElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/toast")))
+        toastElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"toast")))
         toastElement.click()
 
-        notification = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/notification")))
+        notification = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"notification")))
         notification.click()
+        time.sleep(3)
 
-        geolocation = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/geoLocation")))
+        geolocation = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"geoLocation")))
         geolocation.click()
+        time.sleep(3)
 
-        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/Home")))
+        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Back")))
         home.click()
 
-        speedTest = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/speedTest")))
+        speedTest = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"speedTest")))
         speedTest.click()
+        time.sleep(3)
 
-        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/Home")))
+        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Back")))
         home.click()
 
-        browser = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/Browser")))
+        browser = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Browser")))
         browser.click()
 
-        url = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/url")))
+        url = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"url")))
         url.send_keys("https://www.lambdatest.com")
 
-        find = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"com.lambdatest.proverbial:id/find")))
+        find = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"find")))
         find.click()
 
         driver.quit()
