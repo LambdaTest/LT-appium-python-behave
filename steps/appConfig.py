@@ -8,7 +8,7 @@ app_android_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://APP100202491650560064909128" #Enter app_url here
+    "app":"lt://" #Enter app_url here
 }
 
 app_ios_desired_caps = {
@@ -21,5 +21,5 @@ app_ios_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://APP100202491650566933235678" #Enter app_url here
+    "app":"lt://" #Enter app_url here
 }
