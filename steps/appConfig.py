@@ -8,7 +8,14 @@ app_android_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://", #Enter app_url here
+
+
+    # ADD THE APP URL OF OTHER APPS THAT YOU'D LIKE TO INSTALL ON THE SAME DEVICE
+
+    "otherApps":["lt:// ", "lt:// "]   #ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
+
+
 }
 
 app_ios_desired_caps = {
@@ -21,5 +28,11 @@ app_ios_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://", #Enter app_url here
+
+
+    # ADD THE APP URL OF OTHER APPS THAT YOU'D LIKE TO INSTALL ON THE SAME DEVICE
+
+    "otherApps":["lt:// ", "lt:// "]   #ENTER THE OTHER APP URLs HERE IN AN ARRAY FORMAT
+
 }
