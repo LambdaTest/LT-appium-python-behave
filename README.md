@@ -1,10 +1,10 @@
-# How to change IP geographic location in Python with Appium on on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-geoLocation)
+# How to to handle permission pop-ups in Behave with Appium on on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-permissions)
 
-While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-python-behave)
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to automatically handle permission pop-ups. You may choose to either accept all permission pop-ups or dismiss all of them. You can handle the case as mentioned below separately for Android or iOS apps. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-python-behave)
 
 # Steps:
 
-The following is an example on how to set geoLocation in the capabilities in your automation script.
+The following is an example on how to handle permissions in the capabilities in your automation script.
 
 ```
 app_android_desired_caps = {
@@ -19,9 +19,14 @@ app_android_desired_caps = {
     "video":True,
     "app":"lt://", #Enter app_url here
 
-    #ADD GEOLOCATION BASED ON COUNTRY CODE
-    "geoLocation":"fr"
+    #GRANT PERMISSIONS FOR ANDROID
+    "autoGrantPermissions": True,
 
+    #ACCEPT ALERTS FOR IOS
+    "autoDismissAlerts": True,
+
+    #DISMISS ALERTS FOR IOS
+    "autoAcceptAlerts": True
 
 }
 
@@ -46,8 +51,16 @@ app_ios_desired_caps = {
 
 ## Run your test
 
+Execute the following command to run your test on LambdaTest platform.
+
+For iOS App:
 ```bash
-python3 android.py
+behave --tags @iosApp
+```
+
+For Android App:
+```bash
+behave --tags @androidApp
 ```
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
@@ -99,4 +112,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-geoLocation)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-permissions)
