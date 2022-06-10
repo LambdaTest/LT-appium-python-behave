@@ -8,7 +8,8 @@ app_android_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://", #Enter app_url here
+    "geoLocation":"fr"
 }
 
 app_ios_desired_caps = {
@@ -21,5 +22,6 @@ app_ios_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://", #Enter app_url here
+    "geoLocation":"fr"
 }
