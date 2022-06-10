@@ -46,8 +46,16 @@ app_ios_desired_caps = {
 
 ## Run your test
 
+Execute the following command to run your test on LambdaTest platform.
+
+For iOS App:
 ```bash
-python3 android.py
+behave --tags @iosApp
+```
+
+For Android App:
+```bash
+behave --tags @androidApp
 ```
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build).
