@@ -39,29 +39,6 @@ def startIOSAppAutomationTest(self):
         notification.click()
         time.sleep(3)
 
-        geolocation = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"geoLocation")))
-        geolocation.click()
-        time.sleep(3)
-
-        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Back")))
-        home.click()
-
-        speedTest = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"speedTest")))
-        speedTest.click()
-        time.sleep(3)
-
-        home = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Back")))
-        home.click()
-
-        browser = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"Browser")))
-        browser.click()
-
-        url = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"url")))
-        url.send_keys("https://www.lambdatest.com")
-
-        find = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"find")))
-        find.click()
-
         driver.quit()
     except:
         driver.quit()

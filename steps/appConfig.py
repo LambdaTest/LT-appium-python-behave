@@ -8,7 +8,11 @@ app_android_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+
+
+    #Enter the Custom_ID here that was used to upload your application
+
+    "app":"ENTER_CUSTOM_ID_HERE", 
 }
 
 app_ios_desired_caps = {
@@ -21,5 +25,8 @@ app_ios_desired_caps = {
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+
+    #Enter the Custom_ID here that was used to upload your application
+
+    "app":"ENTER_CUSTOM_ID_HERE", 
 }
