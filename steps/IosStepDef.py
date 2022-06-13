@@ -62,6 +62,12 @@ def startIOSAppAutomationTest(self):
         find = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID,"find")))
         find.click()
 
+        #MARKING TEST AS PASSED
+        driver.executeScript("lambda-status=passed")
+
         driver.quit()
     except:
+    
+        #MARKING TEST AS FAILED
+        driver.executeScript("lambda-status=failed")
         driver.quit()
