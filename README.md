@@ -1,57 +1,66 @@
-# How to change IP geographic location in Python with Appium on on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-geoLocation)
+# How to mark test as Passed or Failed in Python Behave with Appium on [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-passfail)
 
-While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where you would like to simulate location of a specific country. You can easily do that by using the lambdatest capability "GeoLocation" and refer the 2-letter country code in the automation script. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-python-behave)
+While performing app automation testing with appium on LambdaTest Grid, you may face a scenario where a test that you declared as fail in your local instance may turn out to be completed successfully at LambdaTest. Don't worry though! We understand how imperative it is to flag an app automation test as either "pass" or "fail" depending upon your testing requirement with respect to the validation of expected behaviour. You can refer to sample test repo [here](https://github.com/LambdaTest/LT-appium-python).
 
 # Steps:
 
-The following is an example on how to set geoLocation in the capabilities in your automation script.
+You can specify a test as passed or failed by Lambda hooks. The following is an example on how to set test result as passed or failed. If the code reaches exception, then it will be marked as failed, else as passed. The following is the AndroidStepDef.py file:
 
 ```
-app_android_desired_caps = {
-    "deviceName":"Galaxy S20",
-    "platformName":"Android",
-    "platformVersion":"10",
-    "build":"Python Behave - Android",
-    "name":"Sample Test Android",
-    "isRealMobile":True,
-    "network":True,
-    "visual":True,
-    "video":True,
-    "app":"lt://", #Enter app_url here
+import sys
+import os
+path = os.getcwd()
+sys.path.append(os.path.abspath(os.path.join(path, os.pardir)))
+from time import time
+from behave import given
+from appium import webdriver
+import appConfig as appConf
+from appium.webdriver.common.mobileby import MobileBy
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-    #ADD GEOLOCATION BASED ON COUNTRY CODE
-    "geoLocation":"fr"
+@given("Start the android app automation test")
+def startAndroidAppAutomationTest(self):
+    if os.environ.get("LT_USERNAME") is None:
+        username = "username" #Enter LT username here if environment variables have not been added
+    else:
+        username = os.environ.get("LT_USERNAME")
+    if os.environ.get("LT_ACCESS_KEY") is None:
+        accesskey = "accesskey" #Enter LT accesskey here if environment variables have not been added
+    else:
+        accesskey = os.environ.get("LT_ACCESS_KEY")
 
+    driver = webdriver.Remote(
+        command_executor="https://"+username+":"+accesskey+"@mobile-hub.lambdatest.com/wd/hub",
+        desired_capabilities=appConf.app_android_desired_caps
+        )
+    try:
+        colorElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/color")))
+        colorElement.click()
 
-}
+        textElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/Text")))
+        textElement.click()
 
-app_ios_desired_caps = {
-    "deviceName":"iPhone 12",
-    "platformName":"ios",
-    "platformVersion":"14",
-    "build":"Python Behave - iOS",
-    "name":"Sample Test iOS",
-    "isRealMobile":True,
-    "network":True,
-    "visual":True,
-    "video":True,
-    "app":"lt://", #Enter app_url here
+        toastElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/toast")))
+        toastElement.click()
 
-    #ADD GEOLOCATION BASED ON COUNTRY CODE
-    "geoLocation":"fr"
+        notification = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/notification")))
+        notification.click()
+        
+        #MARKING TEST AS PASSED
+        driver.executeScript("lambda-status=passed")
 
-}
-
+        driver.quit()
+    except:
+    
+        #MARKING TEST AS FAILED
+        driver.executeScript("lambda-status=failed")
+        driver.quit()
 ```
 
 ## Run your test
 
 Execute the following command to run your test on LambdaTest platform.
-
-For iOS App:
-```bash
-behave --tags @iosApp
-```
 
 For Android App:
 ```bash
@@ -107,4 +116,4 @@ To stay updated with the latest features and product add-ons, visit [Changelog](
 ## We are here to help you :headphones:
 
 * Got a query? we are available 24x7 to help. [Contact Us](support@lambdatest.com)
-* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-geoLocation)
+* For more info, visit - [LambdaTest](https://www.lambdatest.com/?utm_source=github&utm_medium=repo&utm_campaign=appium-python-behave-passfail)
