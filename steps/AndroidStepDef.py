@@ -32,6 +32,12 @@ def startAndroidAppAutomationTest(self):
         textElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/Text")))
         textElement.click()
 
+        #Close the application being tested
+        driver.close_app()
+
+        #Open the application being tested
+        driver.open_app()
+
         toastElement = WebDriverWait(driver,20).until(EC.element_to_be_clickable((MobileBy.ID,"com.lambdatest.proverbial:id/toast")))
         toastElement.click()
 
