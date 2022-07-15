@@ -58,15 +58,15 @@ Set LambdaTest `Username` and `Access Key` in environment variables.
 **For Linux/macOS:**
 
 ```js
-export LT_USERNAME="YOUR_LAMBDATEST_USERNAME" \
-export LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
+export LT_USERNAME=YOUR_LAMBDATEST_USERNAME \
+export LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
 ```
 
 **For Windows:**
 
 ```js
-set LT_USERNAME="YOUR_LAMBDATEST_USERNAME" `
-set LT_ACCESS_KEY="YOUR_LAMBDATEST_ACCESS_KEY"
+set LT_USERNAME=YOUR_LAMBDATEST_USERNAME `
+set LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
 ```
 
 ### Upload Your Application
@@ -128,16 +128,19 @@ You need to update your capabilities in `appConfig.py` files. In this sample pro
 
 ```python title="appConfig.py"
 app_ios_desired_caps = {
+  "lt:options": {
     "deviceName":"iPhone 12",
     "platformName":"ios",
     "platformVersion":"14",
     "build":"Python Behave - iOS",
     "name":"Sample Test iOS",
+    "app":"lt://APP10160531401657115470011987" ,#Enter app_url here
     "isRealMobile":True,
     "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "w3c":True
+  }
 }
 ```
 
@@ -146,16 +149,18 @@ app_ios_desired_caps = {
 
 ```python title="appConfig.py"
 app_android_desired_caps = {
-    "deviceName":"Galaxy S20",
-    "platformName":"Android",
-    "platformVersion":"10",
-    "build":"Python Behave - Android",
-    "name":"Sample Test Android",
-    "isRealMobile":True,
-    "network":True,
-    "visual":True,
-    "video":True,
-    "app":"lt://" #Enter app_url here
+	"lt:options": {
+		"platformName": "android",
+		"deviceName": "OnePlus 6",
+		"platformVersion": "8",
+    "build": "Python Behave - Android",
+		"name": "Sample Test Android",
+		"app": "lt://APP10160531401657178216019631", #Enter app_url here
+		"visual": True,
+		"video": True,
+    "w3c": True,
+		"isRealMobile": True
+	}
 }
 ```
 
