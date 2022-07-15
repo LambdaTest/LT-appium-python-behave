@@ -134,7 +134,7 @@ app_ios_desired_caps = {
     "platformVersion":"14",
     "build":"Python Behave - iOS",
     "name":"Sample Test iOS",
-    "app":"lt://APP10160531401657115470011987" ,#Enter app_url here
+    "app":"app_url" ,#Enter app_url here
     "isRealMobile":True,
     "network":True,
     "visual":True,
@@ -155,7 +155,7 @@ app_android_desired_caps = {
 		"platformVersion": "8",
     "build": "Python Behave - Android",
 		"name": "Sample Test Android",
-		"app": "lt://APP10160531401657178216019631", #Enter app_url here
+		"app": "app_url", #Enter app_url here
 		"visual": True,
 		"video": True,
     "w3c": True,
