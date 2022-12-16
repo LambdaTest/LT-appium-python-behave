@@ -22,7 +22,7 @@ app_ios_desired_caps = {
     "name":"Sample Test iOS",
     "app":"lt://proverbial-ios" ,#Enter app_url here
     "isRealMobile":True,
-    "network":True,
+    "network":False,
     "visual":True,
     "video":True,
     "w3c":True
