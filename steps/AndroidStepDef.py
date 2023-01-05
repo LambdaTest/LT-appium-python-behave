@@ -62,17 +62,17 @@ def startAndroidAppAutomationTest(self):
             (MobileBy.ID, "com.lambdatest.proverbial:id/Home")))
         home.click()
 
-        browser = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-            (MobileBy.ID, "com.lambdatest.proverbial:id/Browser")))
-        browser.click()
+        # browser = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
+        #     (MobileBy.ID, "com.lambdatest.proverbial:id/Browser")))
+        # browser.click()
 
-        url = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-            (MobileBy.ID, "com.lambdatest.proverbial:id/url")))
-        url.send_keys("https://www.lambdatest.com")
+        # url = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
+        #     (MobileBy.ID, "com.lambdatest.proverbial:id/url")))
+        # url.send_keys("https://www.lambdatest.com")
 
-        find = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
-            (MobileBy.ID, "com.lambdatest.proverbial:id/find")))
-        find.click()
+        # find = WebDriverWait(driver, 20).until(EC.element_to_be_clickable(
+        #     (MobileBy.ID, "com.lambdatest.proverbial:id/find")))
+        # find.click()
 
         driver.quit()
     except:

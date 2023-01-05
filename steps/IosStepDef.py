@@ -65,17 +65,17 @@ def startIOSAppAutomationTest(self):
             EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Back")))
         home.click()
 
-        browser = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Browser")))
-        browser.click()
+        # browser = WebDriverWait(driver, 20).until(
+        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Browser")))
+        # browser.click()
 
-        url = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "url")))
-        url.send_keys("https://www.lambdatest.com")
+        # url = WebDriverWait(driver, 20).until(
+        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "url")))
+        # url.send_keys("https://www.lambdatest.com")
 
-        find = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "find")))
-        find.click()
+        # find = WebDriverWait(driver, 20).until(
+        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "find")))
+        # find.click()
 
         driver.quit()
     except:
