@@ -17,7 +17,8 @@ app_ios_desired_caps = {
     "build":"Python Behave - iOS",
     "name":"Sample Test iOS",
     "isRealMobile":True,
+    "network":False,
     "visual":True,
     "video":True,
-    "app":"lt://proverbial-ios" #Enter app_url here
+    "app":"lt://proverbial-ios" ,#Enter app_url here
 }

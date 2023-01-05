@@ -1,4 +1,8 @@
 Paver==1.3.4
+<<<<<<< HEAD
 selenium==3.141.0
+=======
+selenium==3.14.1
+>>>>>>> 31b676c0d54309737c15d55eddaf6b50f715875d
 behave==1.2.6
-Appium-Python-Client
+Appium-Python-Client==1.0.2
