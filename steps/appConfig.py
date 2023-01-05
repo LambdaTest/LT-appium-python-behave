@@ -5,10 +5,9 @@ app_android_desired_caps = {
     "build":"Python Behave - Android",
     "name":"Sample Test Android",
     "isRealMobile":True,
-    "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://proverbial-android" #Enter app_url here
 }
 
 app_ios_desired_caps = {
@@ -18,8 +17,7 @@ app_ios_desired_caps = {
     "build":"Python Behave - iOS",
     "name":"Sample Test iOS",
     "isRealMobile":True,
-    "network":True,
     "visual":True,
     "video":True,
-    "app":"lt://" #Enter app_url here
+    "app":"lt://proverbial-ios" #Enter app_url here
 }
