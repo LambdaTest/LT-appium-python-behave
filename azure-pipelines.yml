@@ -4,37 +4,48 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+# Variables defined here acts as placeholders. 
+# Ensure these names match the 'Variables' tab in your Azure Pipeline UI.
 variables:
-  # These will come from Azure DevOps secret variables
+  # If these are secret, $(LT_USERNAME) will be empty unless mapped in 'env'
   LT_USERNAME: $(LT_USERNAME)
   LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
 steps:
 
-# Setup Python
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '3.14.0'
-  displayName: 'Set up Python 3.14.0'
+    versionSpec: '3.11'
+  displayName: "Set Python Version"
 
-# Install dependencies
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-  displayName: 'Install requirements'
+  displayName: "Install Dependencies"
 
-# Run Behave tests
 - script: |
-    python -m behave --tags @androidApp --junit --junit-directory test-results
-  displayName: 'Run LambdaTest Behave Tests'
+    # Adding -k (keep going) or --junit to capture results even if tests fail
+    python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
+  displayName: "Run iOS App Automation Tests"
   env:
+    # This is the critical part: mapping the pipeline variable to the OS environment
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
-# Publish test results
+- script: |
+    python -m behave --tags=@androidApp --junit --junit-directory test-results/android
+  displayName: "Run Android App Automation Tests"
+  env:
+    LT_USERNAME: $(LT_USERNAME)
+    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+  # Run this even if iOS tests fail
+  condition: succeededOrFailed()
+
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/test-results/*.xml'
-    testRunTitle: 'Behave Test Results'
+    testResultsFiles: '**/test-results/**/*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+    testRunTitle: 'LambdaTest App Automation'
   condition: succeededOrFailed()
+  displayName: "Publish Test Results"
