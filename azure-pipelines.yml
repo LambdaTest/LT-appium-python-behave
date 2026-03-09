@@ -1,0 +1,35 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  LT_USERNAME: $(LT_USERNAME)
+  LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+
+steps:
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.9'
+  displayName: "Set Python Version"
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: "Install Dependencies"
+
+- script: |
+    behave --tags=@iosApp
+  displayName: "Run iOS App Automation Tests"
+  env:
+    LT_USERNAME: $(LT_USERNAME)
+    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+
+- script: |
+    behave --tags=@androidApp
+  displayName: "Run Android App Automation Tests"
+  env:
+    LT_USERNAME: $(LT_USERNAME)
+    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
