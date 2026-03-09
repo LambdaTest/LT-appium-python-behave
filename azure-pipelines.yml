@@ -5,31 +5,36 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  # These will come from Azure DevOps secret variables
   LT_USERNAME: $(LT_USERNAME)
   LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
 steps:
 
+# Setup Python
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '3.14.0'
-  displayName: "Set Python Version"
+    versionSpec: '3.9'
+  displayName: 'Set up Python 3.9'
 
+# Install dependencies
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-  displayName: "Install Dependencies"
+  displayName: 'Install requirements'
 
+# Run Behave tests
 - script: |
-    behave --tags @iosApp
-  displayName: "Run iOS App Automation Tests"
+    python -m behave --tags @androidApp --junit --junit-directory test-results
+  displayName: 'Run LambdaTest Behave Tests'
   env:
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
-- script: |
-    behave --tags @androidApp  
-  displayName: "Run Android App Automation Tests"
-  env:
-    LT_USERNAME: $(LT_USERNAME)
-    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+# Publish test results
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/test-results/*.xml'
+    testRunTitle: 'Behave Test Results'
+  condition: succeededOrFailed()
