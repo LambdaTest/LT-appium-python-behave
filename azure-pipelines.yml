@@ -21,14 +21,14 @@ steps:
   displayName: "Install Dependencies"
 
 - script: |
-    python -m behave --tags @iosApp
+    behave --tags @iosApp
   displayName: "Run iOS App Automation Tests"
   env:
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
 - script: |
-    python -m behave --tags @androidApp  
+    behave --tags @androidApp  
   displayName: "Run Android App Automation Tests"
   env:
     LT_USERNAME: $(LT_USERNAME)
