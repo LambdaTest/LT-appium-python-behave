@@ -1,82 +1,91 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from appium.webdriver.common.mobileby import MobileBy
+from appium.webdriver.common.appiumby import AppiumBy
+from appium.options.common import AppiumOptions
 import time
 from appium import webdriver
 from behave import given
 import appConfig as appConf
 import sys
 import os
+
 path = os.getcwd()
 sys.path.append(os.path.abspath(os.path.join(path, os.pardir)))
 
 
 @given("Start the ios app automation test")
-def startIOSAppAutomationTest(self):
+def startIOSAppAutomationTest(context):
+
+    # LambdaTest Credentials
     if os.environ.get("LT_USERNAME") is None:
-        # Enter LT username here if environment variables have not been added
         username = "username"
     else:
         username = os.environ.get("LT_USERNAME")
+
     if os.environ.get("LT_ACCESS_KEY") is None:
-        # Enter LT accesskey here if environment variables have not been added
         accesskey = "accesskey"
     else:
         accesskey = os.environ.get("LT_ACCESS_KEY")
 
+    # Appium Options (New way for capabilities)
+    options = AppiumOptions()
+    options.load_capabilities(appConf.app_ios_desired_caps)
+
+    # Driver Initialization
     driver = webdriver.Remote(
-        command_executor="https://"+username+":" +
-        accesskey+"@mobile-hub.lambdatest.com/wd/hub",
-        desired_capabilities=appConf.app_ios_desired_caps
+        command_executor="https://" + username + ":" + accesskey + "@mobile-hub.lambdatest.com/wd/hub",
+        options=options
     )
+
     try:
         colorElement = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "color")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "color"))
+        )
         colorElement.click()
 
         textElement = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Text")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Text"))
+        )
         textElement.click()
 
         toastElement = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "toast")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "toast"))
+        )
         toastElement.click()
 
         notification = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "notification")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "notification"))
+        )
         notification.click()
+
         time.sleep(3)
 
         geolocation = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "geoLocation")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "geoLocation"))
+        )
         geolocation.click()
+
         time.sleep(3)
 
         home = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Back")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Back"))
+        )
         home.click()
 
         speedTest = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "speedTest")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "speedTest"))
+        )
         speedTest.click()
+
         time.sleep(3)
 
         home = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Back")))
+            EC.element_to_be_clickable((AppiumBy.ACCESSIBILITY_ID, "Back"))
+        )
         home.click()
 
-        # browser = WebDriverWait(driver, 20).until(
-        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "Browser")))
-        # browser.click()
-
-        # url = WebDriverWait(driver, 20).until(
-        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "url")))
-        # url.send_keys("https://www.lambdatest.com")
-
-        # find = WebDriverWait(driver, 20).until(
-        #     EC.element_to_be_clickable((MobileBy.ACCESSIBILITY_ID, "find")))
-        # find.click()
-
         driver.quit()
-    except:
+
+    except Exception as e:
+        print("Test failed:", e)
         driver.quit()

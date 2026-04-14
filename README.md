@@ -128,19 +128,18 @@ You need to update your capabilities in `appConfig.py` files. In this sample pro
 
 ```python title="appConfig.py"
 app_ios_desired_caps = {
-  "lt:options": {
-    "deviceName":"iPhone 12",
-    "platformName":"ios",
-    "platformVersion":"14",
-    "build":"Python Behave - iOS",
-    "name":"Sample Test iOS",
-    "app":"app_url" ,#Enter app_url here
-    "isRealMobile":True,
-    "network":True,
-    "visual":True,
-    "video":True,
-    "w3c":True
-  }
+    "platformName": "iOS",
+    "appium:deviceName": "iPhone 14",
+    "appium:platformVersion": "16",
+    "appium:automationName": "XCUITest",
+    "appium:app": "lt://proverbial-ios",
+
+    "lt:options": {
+        "w3c": True,
+        "build": "Python Behave iOS Build",
+        "name": "iOS App Automation Test",
+        "isRealMobile": True
+    }
 }
 ```
 
@@ -149,19 +148,22 @@ app_ios_desired_caps = {
 
 ```python title="appConfig.py"
 app_android_desired_caps = {
-	"lt:options": {
-		"platformName": "android",
-		"deviceName": "OnePlus 6",
-		"platformVersion": "8",
-    "build": "Python Behave - Android",
-		"name": "Sample Test Android",
-		"app": "app_url", #Enter app_url here
-		"visual": True,
-		"video": True,
-    "w3c": True,
-		"isRealMobile": True
-	}
+    "platformName": "Android",
+    "appium:deviceName": "Galaxy S20",
+    "appium:platformVersion": "10",
+    "appium:automationName": "UiAutomator2",
+    "appium:app": "lt://proverbial-android",
+
+    "lt:options": {
+        "build": "Python Behave - Android",
+        "name": "Sample Test Android",
+        "isRealMobile": True,
+        "visual": True,
+        "video": True,
+        "w3c": True
+    }
 }
+
 ```
 
 </TabItem>
