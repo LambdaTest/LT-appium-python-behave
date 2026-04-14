@@ -4,15 +4,10 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  LT_USERNAME: $(LT_USERNAME)
-  LT_ACCESS_KEY: $(LT_ACCESS_KEY)
-
 steps:
-
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '3.9'
+    versionSpec: '3.14'
   displayName: "Set Python Version"
 
 - script: |
@@ -21,15 +16,24 @@ steps:
   displayName: "Install Dependencies"
 
 - script: |
-    behave --tags=@iosApp
+    python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
   displayName: "Run iOS App Automation Tests"
   env:
+    # These must match the EXACT names in your Pipeline Variables UI
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
 - script: |
-    behave --tags=@androidApp
+    python -m behave --tags=@androidApp --junit --junit-directory test-results/android
   displayName: "Run Android App Automation Tests"
+  condition: succeededOrFailed()
   env:
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/test-results/**/*.xml'
+    testRunTitle: 'LambdaTest Results'
+  condition: succeededOrFailed()
