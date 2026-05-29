@@ -1,3 +1,4 @@
+import os
 build = os.getenv("LT_BUILD_NAME")
 
 app_android_desired_caps = {
