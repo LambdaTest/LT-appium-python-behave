@@ -39,3 +39,9 @@ steps:
   condition: succeededOrFailed()
 
 - task: LambdatestResults@1
+- task: configuration@1
+  inputs:
+    connection: 'namrata_testing'
+    isTunnelActivate: false
+    isAppAutomate: true
+    isSmartUI: true
