@@ -26,16 +26,16 @@ steps:
     python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
   displayName: "Run iOS App Automation Tests"
   env:
-    LT_USERNAME: $(LT_USERNAME)
-    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+    LT_USERNAME: 'namratabtestmuai'
+    LT_ACCESS_KEY: 'LT_PSoZP3yLuQ6v1kiUv0q0joiAgc8XQgk5qFUFxIorVxd0h05'
 
 - script: |
     python -m behave --tags=@androidApp --junit --junit-directory test-results/android
   displayName: "Run Android App Automation Tests"
   condition: succeededOrFailed()
   env:
-    LT_USERNAME: $(LT_USERNAME)
-    LT_ACCESS_KEY: $(LT_ACCESS_KEY)
+    LT_USERNAME: 'namratabtestmuai'
+    LT_ACCESS_KEY: 'LT_PSoZP3yLuQ6v1kiUv0q0joiAgc8XQgk5qFUFxIorVxd0h05'
 
 - task: PublishTestResults@2
   inputs:
