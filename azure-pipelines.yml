@@ -15,12 +15,6 @@ steps:
     pip install -r requirements.txt
   displayName: "Install Dependencies"
 
-- task: configuration@1
-  inputs:
-    connection: 'testing'
-    isTunnelActivate: false
-    isAppAutomate: true
-    isSmartUI: true
 
 - script: |
     python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
@@ -43,6 +37,13 @@ steps:
     testResultsFiles: '**/test-results/**/*.xml'
     testRunTitle: 'LambdaTest Results'
   condition: succeededOrFailed()
+
+- task: configuration@1
+  inputs:
+    connection: 'testing'
+    isTunnelActivate: false
+    isAppAutomate: true
+    isSmartUI: true
 
 
 - task: LambdatestResults@1
