@@ -17,7 +17,7 @@ steps:
 
 - task: configuration@1
   inputs:
-    connection: 'namrata_testing'
+    connection: 'testing'
     isTunnelActivate: false
     isAppAutomate: true
     isSmartUI: true
