@@ -15,11 +15,19 @@ steps:
     pip install -r requirements.txt
   displayName: "Install Dependencies"
 
+- task: configuration@1
+  inputs:
+    connection: 'namrata_testing'
+    isTunnelActivate: false
+    isAppAutomate: true
+    isSmartUI: true
+
 - script: |
     python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
   displayName: "Run iOS App Automation Tests"
   env:
     # These must match the EXACT names in your Pipeline Variables UI
+    LT_BUILD_NAME: $(LT_BUILD_NAME)
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
@@ -28,6 +36,7 @@ steps:
   displayName: "Run Android App Automation Tests"
   condition: succeededOrFailed()
   env:
+    LT_BUILD_NAME: $(LT_BUILD_NAME)
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
@@ -38,11 +47,5 @@ steps:
     testRunTitle: 'LambdaTest Results'
   condition: succeededOrFailed()
 
-- task: configuration@1
-  inputs:
-    connection: 'namrata_testing'
-    isTunnelActivate: false
-    isAppAutomate: true
-    isSmartUI: true
 
 - task: LambdatestResults@1
