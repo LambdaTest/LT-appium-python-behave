@@ -37,3 +37,5 @@ steps:
     testResultsFiles: '**/test-results/**/*.xml'
     testRunTitle: 'LambdaTest Results'
   condition: succeededOrFailed()
+
+- task: LambdatestResults@1
