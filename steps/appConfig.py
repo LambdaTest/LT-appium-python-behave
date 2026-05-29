@@ -1,3 +1,5 @@
+build = os.getenv("LT_BUILD_NAME")
+
 app_android_desired_caps = {
     "platformName": "Android",
     "appium:deviceName": "Galaxy S20",
@@ -6,7 +8,7 @@ app_android_desired_caps = {
     "appium:app": "lt://proverbial-android",
 
     "lt:options": {
-        "build": "Python Behave - Android",
+        "build": build,
         "name": "Sample Test Android",
         "isRealMobile": True,
         "visual": True,
@@ -24,7 +26,7 @@ app_ios_desired_caps = {
 
     "lt:options": {
         "w3c": True,
-        "build": "Python Behave iOS Build",
+        "build": build,
         "name": "iOS App Automation Test",
         "isRealMobile": True
     }
