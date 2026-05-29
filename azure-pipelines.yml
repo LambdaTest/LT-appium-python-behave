@@ -26,8 +26,6 @@ steps:
     python -m behave --tags=@iosApp --junit --junit-directory test-results/ios
   displayName: "Run iOS App Automation Tests"
   env:
-    # These must match the EXACT names in your Pipeline Variables UI
-    LT_BUILD_NAME: $(LT_BUILD_NAME)
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
@@ -36,7 +34,6 @@ steps:
   displayName: "Run Android App Automation Tests"
   condition: succeededOrFailed()
   env:
-    LT_BUILD_NAME: $(LT_BUILD_NAME)
     LT_USERNAME: $(LT_USERNAME)
     LT_ACCESS_KEY: $(LT_ACCESS_KEY)
 
